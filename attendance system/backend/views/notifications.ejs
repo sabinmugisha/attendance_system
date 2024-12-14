@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notifications</title>
+
+    <style>
+        /* General styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7fc;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        h1.page-title {
+            font-size: 28px;
+            color: #333;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        /* Table styling */
+        .notifications-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        .notifications-table th, .notifications-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .notifications-table th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+
+        .notifications-table tr:hover {
+            background-color: #f9f9f9;
+        }
+
+        /* Action button styles */
+        .delete-btn {
+            background-color: #ff4d4d;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .delete-btn:hover {
+            background-color: #ff1a1a;
+        }
+
+        /* Notification form styling */
+        .notification-form {
+            margin-bottom: 30px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .notification-form input, .notification-form select, .notification-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .notification-form button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .notification-form button:hover {
+            background-color: #45a049;
+        }
+
+        .no-notifications {
+            text-align: center;
+            font-size: 18px;
+            color: #888;
+            margin-top: 20px;
+        }
+    </style>
+
+</head>
+<body>
+
+    <div class="container">
+        <h1 class="page-title">Notifications</h1>
+   
+        <!-- Notification Form for Admin -->
+        <div class="notification-form">
+            <h2>Create Notification</h2>
+            <form action="/notifications/send" method="POST">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" rows="4" required></textarea>
+   
+                <label for="role">Select Role</label>
+                <select id="role" name="role" required>
+                    <option value="staff">Staff</option>
+                    <option value="parent">Parent</option>
+                    <option value="all">All Users</option>
+                </select>
+   
+                <button type="submit">Send Notification</button>
+            </form>
+        </div>
+   
+        <!-- Check if there are notifications -->
+        <% if (notifications && notifications.length > 0) { %>
+            <table class="notifications-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Message</th>
+                        <th>Created At</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% notifications.forEach(notification => { %>
+                        <tr>
+                            <td><%= notification.id %></td>
+                            <td><%= notification.message %></td>
+                            <td><%= notification.created_at %></td>
+                            <td>
+                                <button class="delete-btn" data-id="<%= notification.id %>">Delete</button>
+                            </td>
+                        </tr>
+                    <% }); %>
+                </tbody>
+            </table>
+        <% } else { %>
+            <p class="no-notifications">No notifications available.</p>
+        <% } %>
+    </div>
+   
+
+    <script src="/js/notifications.js"></script> <!-- Link to the JS file -->
+
+</body>
+</html>

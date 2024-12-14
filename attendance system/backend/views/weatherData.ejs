@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Weather Data</title>
+    <link rel="stylesheet" href="/public/style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        /* Weather Data Styling */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .card {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        h2 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        .table th, .table td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        .table th {
+            background-color: #f2f2f2;
+            color: #333;
+        }
+        .btn {
+            padding: 12px 20px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 0;
+            text-decoration: none;
+        }
+        .btn:hover {
+            background-color: #218838;
+        }
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+        }
+        .action-buttons a {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .action-buttons a:hover {
+            text-decoration: underline;
+        }
+        .no-data {
+            text-align: center;
+            color: #777;
+            font-size: 18px;
+        }
+        .card-header {
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+        }
+        .add-weather {
+            display: flex;
+            justify-content: flex-end;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                <h2>Manage Weather Data</h2>
+            </div>
+            <div class="add-weather">
+                <a href="/weatherData/create" class="btn">Add New Weather Data</a>
+            </div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Location</th>
+                        <th>Temperature</th>
+                        <th>Humidity</th>
+                        <th>Wind Speed</th>
+                        <th>Timestamp</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% if (weatherData && weatherData.length > 0) { %>
+                        <% weatherData.forEach(data => { %>
+                            <tr>
+                                <td><%= data.id %></td>
+                                <td><%= data.location %></td>
+                                <td><%= data.temperature %> °C</td>
+                                <td><%= data.humidity %> %</td>
+                                <td><%= data.wind_speed %> m/s</td>
+                                <td><%= data.timestamp %></td>
+                                <td class="action-buttons">
+                                    <a href="/weatherData/edit/<%= data.id %>">Edit</a>
+                                    <a href="/weatherData/delete/<%= data.id %>">Delete</a>
+                                </td>
+                            </tr>
+                        <% }) %>
+                    <% } else { %>
+                        <tr>
+                            <td colspan="7" class="no-data">No Weather Data Found</td>
+                        </tr>
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
