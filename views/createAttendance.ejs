@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Attendance</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f4f7f6;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    h1 {
+      color: #333;
+      font-size: 2.5em;
+      margin-bottom: 20px;
+    }
+
+    form {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 500px;
+    }
+
+    label {
+      font-size: 1em;
+      color: #555;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    input, select, button {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 1em;
+    }
+
+    input[type="date"] {
+      cursor: pointer;
+    }
+
+    button {
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-size: 1.1em;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    input:focus, select:focus {
+      border-color: #007BFF;
+      outline: none;
+    }
+
+  </style>
+</head>
+<body>
+  <h1>Create Attendance Record</h1>
+  <form action="/attendance/create" method="POST">
+    <label for="studentName">Student Name:</label>
+    <input type="text" id="studentName" name="studentName" required>
+  
+    <label for="date">Date:</label>
+    <input type="date" id="date" name="date" required>
+  
+    <label for="status">Status:</label>
+    <select id="status" name="status" required>
+      <option value="Present">Present</option>
+      <option value="Absent">Absent</option>
+    </select>
+  
+    <label for="class">Class:</label> <!-- Add this field -->
+    <input type="text" id="class" name="class" required>
+  
+    <button type="submit">Add Attendance</button>
+  </form>
+  
+</body>
+</html>

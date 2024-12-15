@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Attendance</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f4f7f6;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    h1 {
+      color: #333;
+      font-size: 2.5em;
+      margin-top: 0;
+    }
+
+    a {
+      display: inline-block;
+      background-color: #007BFF;
+      color: white;
+      padding: 10px 20px;
+      text-decoration: none;
+      font-size: 1em;
+      border-radius: 5px;
+      margin-bottom: 20px;
+      transition: background-color 0.3s;
+    }
+
+    a:hover {
+      background-color: #0056b3;
+    }
+
+    table {
+      width: 80%;
+      margin-top: 20px;
+      border-collapse: collapse;
+      background-color: #fff;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    th, td {
+      padding: 12px 15px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #007BFF;
+      color: white;
+      font-size: 1.1em;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+
+    tr:hover {
+      background-color: #f1f1f1;
+    }
+  </style>
+</head>
+<body>
+  <h1>Attendance Records</h1>
+  <a href="/attendance/create">Add Attendance</a>
+  <table>
+    <thead>
+      <tr>
+        <th>Student Name</th>
+        <th>Date</th>
+        <th>Status</th>
+        <th>Class</th> <!-- Add this column -->
+      </tr>
+    </thead>
+    <tbody>
+      <% attendanceData.forEach(function(record) { %>
+        <tr>
+          <td><%= record.studentName %></td>
+          <td><%= record.date %></td>
+          <td><%= record.status %></td>
+          <td><%= record.class %></td> <!-- Add this field -->
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+  
+</body>
+</html>

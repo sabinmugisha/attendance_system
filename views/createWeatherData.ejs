@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Weather Data</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f4f7f6;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    h1 {
+      color: #333;
+      font-size: 2.5em;
+      margin-bottom: 20px;
+    }
+
+    form {
+      background-color: #fff;
+      padding: 25px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 500px;
+    }
+
+    label {
+      font-size: 1em;
+      color: #555;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    input, button {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 1em;
+    }
+
+    button {
+      background-color: #28a745;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-size: 1.1em;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #218838;
+    }
+
+    input:focus {
+      border-color: #28a745;
+      outline: none;
+    }
+
+    a {
+      display: inline-block;
+      text-align: center;
+      margin-top: 20px;
+      text-decoration: none;
+      font-size: 1em;
+      color: #007BFF;
+      transition: color 0.3s;
+    }
+
+    a:hover {
+      color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <h1>Add New Weather Data</h1>
+  <form action="/weatherData/create" method="POST">
+    <label for="location">Location:</label>
+    <input type="text" name="location" required>
+
+    <label for="temperature">Temperature (°C):</label>
+    <input type="number" name="temperature" step="0.1" required>
+
+    <label for="humidity">Humidity (%):</label>
+    <input type="number" name="humidity" step="0.1" required>
+
+    <label for="wind_speed">Wind Speed (km/h):</label>
+    <input type="number" name="wind_speed" step="0.1" required>
+
+    <button type="submit">Add Weather Data</button>
+  </form>
+  <a href="/weatherData">Back to Weather Data</a>
+</body>
+</html>
